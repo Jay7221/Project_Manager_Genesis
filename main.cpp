@@ -137,6 +137,7 @@ void Manager::CreateNewProject(){
 	char flag;
 	cin >> flag;
 	if(flag == 'Y' || flag == 'y'){
+		ListProjectTemplates();
 		cout << "Enter the name of the template : " << endl;
 		string template_name;
 		cin >> template_name;
@@ -163,6 +164,10 @@ void Manager::run(){
 	switch(choice){
 		case VIEW_PROJECTS:
 			ListProjects();
+			char ch;
+			while(!(cin >> ch)){
+				continue ;
+			}
 			break;
 		case OPEN_PROJECT:
 			ListProjects();
@@ -173,6 +178,9 @@ void Manager::run(){
 			break ;
 		case VIEW_TEMPLATES:
 			ListProjectTemplates();
+			while(!(cin >> ch)){
+				continue ;
+			}
 			break ;
 		case OPEN_TEMPLATE:
 			ListProjectTemplates();
@@ -259,8 +267,9 @@ void Project::open(){
 // ---------------------- Main Code Begins From Here ---------------------------------------------------
 
 void clear_screen(){
-	system("clear");
+	run_command("clear");
 }
+
 int main(int argc, char* argv[]){
 	Manager M;
 	if(!M.init()){
@@ -269,6 +278,7 @@ int main(int argc, char* argv[]){
 	}
 
 	while(M.is_running()){
+		clear_screen();
 		M.run();
 	}
 	return 0;

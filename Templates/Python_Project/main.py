@@ -1,0 +1,5 @@
+print("Hello World")
+print("Enter something")
+a =string(input())
+print("You entered")
+print(a)
